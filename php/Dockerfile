@@ -2,8 +2,16 @@ FROM php:8.0.3-fpm
 
 RUN docker-php-ext-install pdo pdo_mysql
 
-
+WORKDIR /var/www
 RUN apt-get update
+ADD . /var/www
+
+# Add user for laravel application
+RUN groupadd -g 1000 www
+RUN useradd -u 1000 -ms /bin/bash -g www www
+
+# Copy existing application directory permissions
+COPY --chown=www:www . /var/www
 
 # Install useful tools
 RUN apt-get -y install apt-utils nano wget dialog vim
@@ -48,3 +56,5 @@ RUN docker-php-ext-install \
 RUN apt-get install -y libpq-dev \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo pdo_pgsql pgsql
+#composer install
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

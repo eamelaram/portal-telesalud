@@ -9,7 +9,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./src:/var/www
+      - ./portal-telesalud:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     depends_on:
       - app
@@ -32,20 +32,20 @@ services:
     volumes:
       - ./postgresql/data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment: 
-      POSTGRES_DB: blog
+      POSTGRES_DB: portal
       POSTGRES_USER: root 
-      POSTGRES_PASSWORD: password 
+      POSTGRES_PASSWORD: admin 
 
   # Application Service
   app:
-    container_name: blog
+    container_name: portal
     build: 
       context: ./php
       dockerfile: Dockerfile
     volumes:
-      - ./src:/var/www
+      - ./portal-telesalud:/var/www
     ports:
       - "9000:9000"
     working_dir: /var/www
@@ -66,5 +66,5 @@ services:
     depends_on:
       - db 
     environment:
-      PGADMIN_DEFAULT_EMAIL: hanieasemi76@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: password 
+      PGADMIN_DEFAULT_EMAIL: root@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin 
