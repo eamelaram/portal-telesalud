@@ -1,3 +1,9 @@
+php artisan migrate
+php artisan migrate:fresh --seed
+chmod -R 777 /storage
+chmod -R 777 ./storage
+
+
 # Install and Set Up Laravel with Docker Compose
 
 Setting up Laravel in the local environment with Docker using the LEMP stack that includes: Nginx, MySQL, PHP, and phpMyAdmin.
