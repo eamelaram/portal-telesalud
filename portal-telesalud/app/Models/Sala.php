@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sala extends Model
 {
     use HasFactory;
+
+    protected $table = 'salas';
+
+    protected $fillable = ['nombre', 'codigo', 'telefono', 'fecha_programada', 'email'];
 }

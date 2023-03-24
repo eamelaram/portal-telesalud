@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('salas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('codigo');
+            $table->string('codigo', 26);
             $table->integer('telefono');
             $table->timestamp('fecha_programada');
             $table->string('email')->nullable();
