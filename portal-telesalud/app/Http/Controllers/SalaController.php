@@ -10,6 +10,6 @@ class SalaController extends Controller
     //
 
     public function instantanea(SalaInstantaneaPost $request){
-
+        
     }
 }
